@@ -1,6 +1,6 @@
 # Crediit crop construction
 
-This macro creates a credit crop according to a given number of days of default. This macro uses de [MacroDates](https://github.com/camiloyatet/SAS-codes/blob/master/MacroDates.md)
+This macro creates a credit crop according to a given number of days of default. This macro uses the macro variables created by the [MacroDates](https://github.com/camiloyatet/SAS-codes/blob/master/MacroDates.md)
 
 
     %macro cosechas (altura);
