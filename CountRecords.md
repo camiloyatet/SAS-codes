@@ -1,6 +1,6 @@
-# Contar los registros de todas las tablas de una libreria en particular
+# Count records (__rows__) on every table from a given library
 
-Este código toma como insumo el nombre de una libreria asignada a la conexión y cuenta los registros en cada las tablas de dicha libreria
+The following code takes a library's name (__libref__) and counts the rows of each table belonging to that library.
 
 		%let lib=SASHELP;
 		
