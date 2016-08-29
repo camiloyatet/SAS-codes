@@ -1,6 +1,6 @@
 # Contar los registros de todas las tablas de una libreria en particular
 
-Este código toma como insuumo el nombre de una libreria asignada a la conexión y cuenta los registros en cada las tablas de dicha libreria
+Este código toma como insumo el nombre de una libreria asignada a la conexión y cuenta los registros en cada las tablas de dicha libreria
 
 		%let lib=SASHELP;
 		
