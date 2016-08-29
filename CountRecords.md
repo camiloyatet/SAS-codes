@@ -24,7 +24,7 @@ The following code takes a library's name (__libref__) and counts the rows of ea
 		
 			proc sql;
 				insert into registros
-					select "&val", count(*) from SASHELP.&val
+					select "&val", count(*) from &&lib..&val
 			;quit;
 		
 			%let num=%eval(&num+1);
