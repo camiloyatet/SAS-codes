@@ -1,5 +1,5 @@
 # Macro for Spliting Variables
-This macro splits a variariable according to a given character and creates one variable for each value.
+This macro splits a variariable according to a given character and creates one variable for each value. It returns a narrow table
 
     %macro separar(input, output, variable, char);
     proc sql noprint; select (max(count(&variable,"&char")))+1 into :nvars from &input ;quit;
