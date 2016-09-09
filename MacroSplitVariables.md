@@ -12,7 +12,7 @@ This macro splits a variariable according to a given character and creates one v
     data step1;
       set &input;
       %do i=1 %to &nvars;
-       &variable&i=scan(&variable,&i,'|');
+       &variable&i=scan(&variable,&i,"&char");
       %end;
     drop &variable;
     run;
