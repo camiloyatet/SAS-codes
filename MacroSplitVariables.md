@@ -1,11 +1,13 @@
 # Macro for Split and Consolidate Variables
 This macro splits a variariable according to a given character. It returns a narrow table it can return a narrow or wide table according to the parameter 'consolidar'
 
-    %macro separar(input /*Input*/, output /*Output*/, variable /*Variable to split*/, char /*Spliting character*/, consolidar /*1: Narrow table 0:Wide table*/);
+    %macro separar(input /*Input*/, output /*Output*/, variable /*Variable to split*/, 
+    char /*Spliting character*/, consolidar /*1: Narrow table 0:Wide table*/);
     
     proc sql noprint; select (max(count(&variable,"&char")))+1 into :nvars from &input ;quit;
     proc contents data=&input out=metadata noprint ;run;
-    proc sql noprint; select name into :vars_copy separated by " " from metadata where name ne "&variable" order by varnum ; quit;
+    proc sql noprint; select name into :vars_copy separated by " " from metadata where name ne "&variable" 
+    order by varnum ; quit;
     
     %if &consolidar %then %do;
     
