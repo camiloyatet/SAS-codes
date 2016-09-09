@@ -48,5 +48,3 @@ This macro splits a variariable according to a given character and creates one v
     run;
     
     %mend;
-    
-    %separar(paso1, paso2, CodigoDiagnostico,|,consolidar=0);
