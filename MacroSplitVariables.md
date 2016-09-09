@@ -1,4 +1,4 @@
-# Macro for Spliting Variables
+# Macro for Split and Consolidate Variables
 This macro splits a variariable according to a given character and creates one variable for each value. It returns a narrow table
 
     %macro separar(input, output, variable, char, consolidar=0);
