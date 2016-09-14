@@ -15,7 +15,7 @@
         run;
         
         proc export data=part_&j replace
-        outfile="C:\Users\hyate\Desktop\CargaTableau\&&part_&J..txt"
+        outfile="C:\Users\hyate\Desktop\CargaTableau\part_&J..txt"
         dbms=dlm; 
         delimiter='~';
         run;
