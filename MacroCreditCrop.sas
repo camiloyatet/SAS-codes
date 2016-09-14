@@ -1,5 +1,6 @@
 * Crediit crop construction;
-* This macro creates a credit crop according to a given number of days of default. This macro uses the macro variables created by the MacroDates;
+* This macro creates a credit crop according to a given number of days of default.;
+* This macro uses the macro variables created by the MacroDates;
 
 %macro cosechas (altura);
 
