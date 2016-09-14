@@ -1,6 +1,5 @@
-# Count records (__rows__) on every table from a given library
-
-The following code takes a library's name (__libref__) and counts the rows of each table belonging to that library.
+*Count records (__rows__) on every table from a given library;
+*The following code takes a library's name (__libref__) and counts the rows of each table belonging to that library.;
 
 		%let lib=SASHELP;
 		
