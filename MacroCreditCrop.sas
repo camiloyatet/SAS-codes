@@ -43,7 +43,7 @@
   ;quit;
   
   proc datasets lib=work nolist nodetails nowarn;
-  delete step1 step2;
+    delete step1 step2;
   run;
 
 %mend cosechas;
