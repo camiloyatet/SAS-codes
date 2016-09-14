@@ -17,7 +17,7 @@
   ;quit;
   
   data step2;
-    set step1;
+  set step1;
     array pct(*) cuenta--pct&per_0;
     array mes(*) mes0-mes&meses;
     %do i=&meses %to 0 %by -1;
