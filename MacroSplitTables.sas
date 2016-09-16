@@ -1,4 +1,5 @@
 * Split Tables in given number of tables &num;
+* Exports each table in a ~ delimited text file;
 * This macro is useful in order to split a large dataset in a number of smaller tables;
 
 %macro split_rows(lib,db,num);
@@ -15,10 +16,14 @@
         run;
         
         proc export data=part_&j replace
-        outfile="C:\Users\hyate\Desktop\CargaTableau\part_&J..txt"
+        outfile="%\part_&J..txt"
         dbms=dlm; 
         delimiter='~';
         run;
+        
+        proc datasets nodetails nolist nowarn lib=work;
+        delete part_&j;
+        run
         
         %end;
 
