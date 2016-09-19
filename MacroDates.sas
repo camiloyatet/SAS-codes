@@ -6,6 +6,7 @@
 
 %let mes_inicial=01Sep2015;
 %let mes_actual=31Aug2016; 
+
 %let meses=%sysfunc(intck(month,"&mes_inicial"d,"&mes_actual"d));
  
 %macro fechas;
