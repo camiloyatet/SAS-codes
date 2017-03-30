@@ -4,20 +4,14 @@
 * It also creates a variable that stores the number of months in the interval;
 * The variable &per_0 stores the most recent month's value and &&per_&meses the least one.;
 
-%let mes_inicial=01Sep2015;
-%let mes_actual=31Aug2016; 
-
-%let meses=%sysfunc(intck(month,"&mes_inicial"d,"&mes_actual"d));
- 
-%macro fechas;
-
-  data _null_;
-    %do i=&meses %to 0 %by -1; 
-      %global per_&i;
-      call symputx (compress("per_"||&i),put(intnx('month',"&mes_actual"d,-&i),yymmn6.)*1);
-    %end;
-  run;
-  
+%macro fechas(mes_inicial /*Initial date point (Date9.)*/,mes_actual/*Final date point (Date9.)*/);
+	%global meses;
+	%let meses=%sysfunc(intck(month,"&mes_inicial"d,"&mes_actual"d)); /*Computes number of months*/
+	data _null_;
+		%do i=&meses %to 0 %by -1; 
+			%global per_&i;
+			call symputx (compress("per_"||&i),put(intnx('month',"&mes_actual"d,-&i),yymmn6.)*1); /*Numeric Period vairable in YYYYMM format*/	
+		%end;
+	run;
 %mend fechas;
-
 
