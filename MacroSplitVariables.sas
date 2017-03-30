@@ -29,5 +29,19 @@
 		where &variable ne '';
 		&variable=strip(compbl(&variable));
 		run;
-    
 	%end;
+
+	%else %do;
+		data &output;
+		  set &input;
+		  %do i=1 %to &nvars;
+		   &variable&i=scan(&variable,&i,'|');
+		   &variable&i=strip(compbl(&variable&i));
+		  %end;
+		drop &variable;
+		run;
+	%end;
+
+	%Borrar_Conjunto(work, step1 step2 metadata)
+
+%mend;
