@@ -1,0 +1,48 @@
+
+/*This macro crates a grouping variable from taking ordered ranks from a given variable*/
+
+%macro Particionar(input /*Dataset with ranking variable*/, partvar/*Varible to rank*/, npart/*Number of ranks*/, targetDS/*Dataset that will contain the rank-grouped variable*/, targetVar /*Variable to group*/);
+
+*Crear el número de agrupaciones definidas por el usuario según los percentiles correspondientes; 
+proc rank data = &input groups=&npart ties=mean out=Ranked;
+	var &PartVar;
+	ranks Agrupaciones;
+run;
+
+*Tabla de resumen con valores mínimos y máximos de cada rango;
+proc sql;
+	create table RankLims as 
+	select distinct 
+	Agrupaciones as Agrupacion
+	,min(&PartVar) format=20.4 as min
+	,max(&PartVar) format=20.4 as max
+	from ranked
+	where Agrupaciones ne .
+	group by 1
+;quit;
+
+*Almacena en macro-variables las cotas de cada rango y su respectiva descripción;
+%CrearMacroVariables(RankLims, min, ll, 0);
+%CrearMacroVariables(RankLims, max, ul, 0);
+%CrearMacroVariables(RankLims, agrupacion,agr,0);
+
+/*Crea nuevas variables en el conjunto de datos inidicado por el usuario con variables 
+categoricas segun las cotas*/
+data &targetDS;
+set &targetDS;
+	%do Cnt1=1 %to &nll;
+		if &&ll&Cnt1 le &targetVar le &&ul&Cnt1 then do;
+		inf=&&ll&Cnt1;
+		sup=&&ul&Cnt1;
+		agr=&&agr&Cnt1;
+		end;
+	%end;
+	
+	if inf ne '' then Gr_&targetVar=catx(' ',agr,': De', inf, 'a ', sup);
+
+	drop inf sup agr;
+run;
+
+%Borrar_Conjunto(work, Ranked RankLims);
+
+%mend;
